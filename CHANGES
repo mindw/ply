@@ -1,31 +1,31 @@
 Version 3.5
 ---------------------
 04/21/15: beazley
-          Added support for defaulted_states in the parser.  A
-          defaulted_state is a state where the only legal action is a
-          reduction of a single grammar rule across all valid input
-          tokens.  For such states, the rule is reduced and the
-          reading of the next lookahead token is delayed until it is
-          actually needed at a later point in time.
+      Added support for defaulted_states in the parser.  A
+      defaulted_state is a state where the only legal action is a
+      reduction of a single grammar rule across all valid input
+      tokens.  For such states, the rule is reduced and the
+      reading of the next lookahead token is delayed until it is
+      actually needed at a later point in time.
 
-	  This delay in consuming the next lookahead token is a
-	  potentially important feature in advanced parsing
-	  applications that require tight interaction between the
-	  lexer and the parser.  For example, a grammar rule change
-	  modify the lexer state upon reduction and have such changes
-	  take effect before the next input token is read.
+      This delay in consuming the next lookahead token is a
+      potentially important feature in advanced parsing
+      applications that require tight interaction between the
+      lexer and the parser.  For example, a grammar rule change
+      modify the lexer state upon reduction and have such changes
+      take effect before the next input token is read.
 
-	  *** POTENTIAL INCOMPATIBILITY ***
-	  One potential danger of defaulted_states is that syntax
-	  errors might be deferred to a a later point of processing
-	  than where they were detected in past versions of PLY.
-	  Thus, it's possible that your error handling could change
-	  slightly on the same inputs.  defaulted_states do not change
-	  the overall parsing of the input (i.e., the same grammar is
-	  accepted).
+      *** POTENTIAL INCOMPATIBILITY ***
+      One potential danger of defaulted_states is that syntax
+      errors might be deferred to a a later point of processing
+      than where they were detected in past versions of PLY.
+      Thus, it's possible that your error handling could change
+      slightly on the same inputs.  defaulted_states do not change
+      the overall parsing of the input (i.e., the same grammar is
+      accepted).
 
-	  If for some reason, you need to disable defaulted states,
-	  you can do this:
+      If for some reason, you need to disable defaulted states,
+      you can do this:
 
               parser = yacc.yacc()
               parser.defaulted_states = {}
@@ -59,7 +59,7 @@ Version 3.5
           imported by mistake. For example, if it's found somewhere else on the path
           by accident.
 
-	  *** POTENTIAL INCOMPATIBILITY ***  It's possible that this might break some
+        *** POTENTIAL INCOMPATIBILITY ***  It's possible that this might break some
           packaging/deployment setup if PLY was instructed to place its parsetab.py
           in a different location.  You'll have to specify a proper outputdir= argument
           to yacc() to fix this if needed.
@@ -96,7 +96,7 @@ Version 3.5
        
 05/29/13: beazley
           Fixed CPP_INTEGER regex in ply/cpp.py (Issue 21).
-	  Reported by @vbraun.
+      Reported by @vbraun.
  
 05/29/13: beazley
           Fixed yacc validation bugs when from __future__ import unicode_literals
@@ -109,7 +109,7 @@ Version 3.5
           Added a .gitignore file.  Suggested by Kenn Knowles.
 
 05/29/13: beazley
-	  Fixed validation problems for source files that include a 
+          Fixed validation problems for source files that include a
           different source code encoding specifier.  Fix relies on
           the inspect module.  Should work on Python 2.6 and newer.
           Not sure about older versions of Python.
@@ -117,8 +117,8 @@ Version 3.5
 
 05/21/13: beazley
           Fixed unit tests for yacc to eliminate random failures due to dict hash value
-	  randomization in Python 3.3
-	  Reported by Arfrever
+          randomization in Python 3.3
+          Reported by Arfrever
 
 10/15/12: beazley
           Fixed comment whitespace processing bugs in ply/cpp.py.
@@ -180,9 +180,9 @@ Version 3.5
 04/18/12: beazley
           Change to doc string handling in lex module.  Regex patterns are now first
           pulled from a function's .regex attribute.  If that doesn't exist, then
-	  .doc is checked as a fallback.   The @TOKEN decorator now sets the .regex
-	  attribute of a function instead of its doc string.
-	  Changed suggested by Kristoffer Ellersgaard Koch.
+          .doc is checked as a fallback.   The @TOKEN decorator now sets the .regex
+          attribute of a function instead of its doc string.
+          Changed suggested by Kristoffer Ellersgaard Koch.
 
 04/18/12: beazley
           Fixed issue #1: Fixed _tabversion. It should use __tabversion__ instead of __version__
@@ -217,7 +217,7 @@ Version 3.3
 -----------------------------
 08/25/09: beazley
           Fixed issue 15 related to the set_lineno() method in yacc.  Reported by
-	  mdsherry.
+      mdsherry.
 
 08/25/09: beazley
           Fixed a bug related to regular expression compilation flags not being
@@ -325,7 +325,7 @@ Version 3.0
           Vastly improved debugging support for yacc.parse().   Instead of passing
           debug as an integer, you can supply a Logging object (see the logging
           module). Messages will be generated at the ERROR, INFO, and DEBUG
-	  logging levels, each level providing progressively more information.
+          logging levels, each level providing progressively more information.
           The debugging trace also shows states, grammar rule, values passed
           into grammar rules, and the result of each reduction.
 
@@ -337,7 +337,7 @@ Version 3.0
 
 01/09/09: beazley
           *HUGE* refactoring of the the ply.yacc() implementation.   The high-level
-	  user interface is backwards compatible, but the internals are completely
+          user interface is backwards compatible, but the internals are completely
           reorganized into classes.  No more global variables.    The internals
           are also more extensible.  For example, you can use the classes to 
           construct a LALR(1) parser in an entirely different manner than 
@@ -431,12 +431,12 @@ Version 2.4
 
 05/04/08: beazley
           Slight modification to lex() and yacc() to allow their table files
-	  to be loaded from a previously loaded module.   This might make
-	  it easier to load the parsing tables from a complicated package
+          to be loaded from a previously loaded module.   This might make
+          it easier to load the parsing tables from a complicated package
           structure.  For example:
 
-	       import foo.bar.spam.parsetab as parsetab
-               parser = yacc.yacc(tabmodule=parsetab)
+              import foo.bar.spam.parsetab as parsetab
+                   parser = yacc.yacc(tabmodule=parsetab)
 
           Note:  lex and yacc will never regenerate the table file if used
           in the form---you will get a warning message instead. 
@@ -596,7 +596,7 @@ Version 2.3
           applies to positional information associated with nonterminal
           grammar symbols.
           *** POTENTIAL INCOMPATIBILITY ***
-	  
+
 02/18/07: beazley
           Yacc no longer supports extended slices of grammar productions.
           However, it does support regular slices.  For example:
@@ -1202,12 +1202,12 @@ Version 1.2
 10/30/02: beazley
           Fixed error messages to use "filename:line: message" instead
           of "filename:line. message".  This makes error reporting more
-          friendly to emacs. Patch submitted by François Pinard.
+          friendly to emacs. Patch submitted by Franï¿½ois Pinard.
 
 10/30/02: beazley
           Improvements to parser.out file.  Terminals and nonterminals
           are sorted instead of being printed in random order.
-          Patch submitted by François Pinard.
+          Patch submitted by Franï¿½ois Pinard.
 
 10/30/02: beazley
           Improvements to parser.out file output.  Rules are now printed
@@ -1269,7 +1269,7 @@ Version 1.1   October 25, 2001
 
 10/25/01: beazley
           Fixed a bug in lex.py that sometimes caused illegal characters to be
-          reported incorrectly.  Reported by Sverre Jørgensen.
+          reported incorrectly.  Reported by Sverre Jï¿½rgensen.
 
 7/8/01  : beazley
           Added a reference to the underlying lexer object when tokens are handled by
